@@ -39,21 +39,21 @@
 
   // ===== Assets =====
   const normalStates = [
-    "assets/apple-01.png",
-    "assets/apple-02.png",
-    "assets/apple-03.png",
-    "assets/apple-04.png",
+    "./assets/apple-01.png",
+    "./assets/apple-02.png",
+    "./assets/apple-03.png",
+    "./assets/apple-04.png",
   ];
 
   // Golden: 1st(normal) -> 2nd -> 3rd -> 4th (plate)
   const goldenStates = [
-    "assets/golden-07.png",
-    "assets/golden-08.png",
-    "assets/golden-09.png",
-    "assets/golden-10.png",
+    "./assets/golden-07.png",
+    "./assets/golden-08.png",
+    "./assets/golden-09.png",
+    "./assets/golden-10.png",
   ];
 
-  const bubbleImgSrc = "assets/bubble.png";
+  const bubbleImgSrc = "./assets/bubble.png";
 
   // ===== Audio (WebAudio) =====
   let audioCtx = null;
@@ -277,7 +277,7 @@ function biteSound(){
     el.appendChild(img);
     el.appendChild(txt);
     bitesLayer.appendChild(el);
-    setTimeout(() => el.remove(), 0);
+    setTimeout(() => el.remove(), 720);
   }
 
   function startFever(){
@@ -303,7 +303,7 @@ feverTimer = null;
       const shouldSpawnGolden = (!inFever) && (applesEaten >= nextGoldenAt);
       if (shouldSpawnGolden) nextGoldenAt += 5;
       resetApple(shouldSpawnGolden ? "golden" : "normal");
-    }, 0);
+    }, 540);
   }
 
   function onAppleClick(){
@@ -432,7 +432,7 @@ feverTimer = null;
 
     appleWrap.style.pointerEvents = "none";
 
-    setTimeout(() => homeBtn.classList.add("show"), 0);
+    setTimeout(() => homeBtn.classList.add("show"), 3000);
   }
 
   function backHome(){
