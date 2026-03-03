@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>anakiミニゲーム|りんごをかじりまくれ！</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app" class="app">
+    <header class="hud">
+      <div class="hud-top">
+        <div class="title-wrap">
+          <div class="title">りんごをかじりまくれ！</div>
+          <div class="subtitle" id="leaderLine">現在の一位: <span id="bestScore">0</span>個</div>
+        </div>
+        <div class="timer-wrap">
+          <div class="timebar">
+            <div class="timebar-fill" id="timebarFill"></div>
+          </div>
+          <div class="timeText"><span id="timeLeft">25.0</span>s</div>
+        </div>
+        <div class="timerUnderBar" id="timerText">00:25</div>
+      </div>
+    </header>
+
+    <main class="stage">
+      <div class="overlay" id="overlay">
+        <div class="card" id="homeCard">
+          <button id="startBtn" class="startBtn">スタート</button>
+        </div>
+        
+      </div>
+
+      <div class="countdown" id="countdown"></div>
+      <div class="fever" id="fever"><span class="feverTxt">FEVERTIME</span></div>
+
+      <div class="lane" id="lane">
+        <div class="appleWrap" id="appleWrap">
+          <img id="appleImg" class="appleImg" src="assets/apple-01.png" alt="apple" draggable="false"/>
+        </div>
+        
+      </div>
+
+      <div class="bites" id="bites"></div>
+    </main>
+
+    <div class="result" id="result">
+      <div class="resultCard">
+        <div class="resultMain">食べたリンゴの数</div>
+        <div class="resultCountLine"><span id="resultCount">0</span><span class="unit">個</span></div>
+        <div class="resultRank">本日<span id="resultRank">--</span>位！</div>
+        <button id="homeBtn" class="homeBtn">ホームへ戻る</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
