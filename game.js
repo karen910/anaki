@@ -38,22 +38,41 @@
   }
 
   // ===== Assets =====
+  // GitHub Pages can cache images aggressively and may delay loading of later states.
+  // We add a version query and preload all state images so the apple shape updates immediately.
+  const ASSET_VERSION = "2026-03-04c";
+  const withV = (p) => `${p}?v=${ASSET_VERSION}`;
+
   const normalStates = [
-    "./assets/apple-01.png",
-    "./assets/apple-02.png",
-    "./assets/apple-03.png",
-    "./assets/apple-04.png",
+    withV("./assets/apple-01.png"),
+    withV("./assets/apple-02.png"),
+    withV("./assets/apple-03.png"),
+    withV("./assets/apple-04.png"),
   ];
 
   // Golden: 1st(normal) -> 2nd -> 3rd -> 4th (plate)
   const goldenStates = [
-    "./assets/golden-07.png",
-    "./assets/golden-08.png",
-    "./assets/golden-09.png",
-    "./assets/golden-10.png",
+    withV("./assets/golden-07.png"),
+    withV("./assets/golden-08.png"),
+    withV("./assets/golden-09.png"),
+    withV("./assets/golden-10.png"),
   ];
 
-  const bubbleImgSrc = "./assets/bubble.png";
+  const bubbleImgSrc = withV("./assets/bubble.png");
+
+  const _preload = (src) =>
+    new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => {
+        console.warn("[asset] failed to load:", src);
+        resolve(false);
+      };
+      img.src = src;
+    });
+
+  // Kick preloads ASAP (non-blocking)
+  Promise.all([...normalStates, ...goldenStates, bubbleImgSrc].map(_preload)).then(() => {});
 
   // ===== Audio (WebAudio) =====
   let audioCtx = null;
@@ -432,7 +451,7 @@ feverTimer = null;
 
     appleWrap.style.pointerEvents = "none";
 
-    setTimeout(() => homeBtn.classList.add("show"), 3000);
+    setTimeout(() => homeBtn.classList.add("show"), 2000);
   }
 
   function backHome(){
